@@ -1,9 +1,9 @@
-import React from 'react';
-import { View, Animated } from 'react-native';
-import PropTypes from 'prop-types';
+import React from "react";
+import { View, Animated } from "react-native";
+import PropTypes from "prop-types";
 
-import { minutesToY, CONTENT_OFFSET } from '../utils';
-import styles from './NowLine.styles';
+import { minutesToY, CONTENT_OFFSET } from "../utils";
+import styles from "./NowLine.styles";
 
 const UPDATE_EVERY_MILLISECONDS = 60 * 1000; // 1 minute
 
@@ -93,7 +93,7 @@ NowLine.propTypes = {
 };
 
 NowLine.defaultProps = {
-  color: '#e53935',
+  color: "#e53935",
 };
 
 export default React.memo(NowLine);

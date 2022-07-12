@@ -45,10 +45,10 @@
  *   >
  * ```
  */
-import React from 'react';
-import { View } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import { runOnJS } from 'react-native-reanimated';
+import React from "react";
+import { View } from "react-native";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { runOnJS } from "react-native-reanimated";
 
 const withTouchableGestures = (Component) => {
   const viewWithTouchable = ({ onPress, onLongPress, ...other }) => {

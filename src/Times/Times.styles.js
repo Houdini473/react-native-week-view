@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   columnContainer: {
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 12,
-    textAlign: 'center',
+    textAlign: "center",
   },
 });
 

@@ -1,9 +1,9 @@
-import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Text, View, TouchableOpacity } from "react-native";
+import PropTypes from "prop-types";
 
-import { getCurrentMonth, availableNumberOfDays } from '../utils';
-import styles from './Title.styles';
+import { getCurrentMonth, availableNumberOfDays } from "../utils";
+import styles from "./Title.styles";
 
 const getFontSizeHeader = (numberOfDays) => {
   if (numberOfDays > 1) {
@@ -35,7 +35,7 @@ const Title = ({
         style={[
           {
             fontSize: getFontSizeHeader(numberOfDays),
-            textAlign: 'center',
+            textAlign: "center",
           },
           textStyle,
         ]}

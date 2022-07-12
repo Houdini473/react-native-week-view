@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
-import styles from './Times.styles';
-import { getTimeLabelHeight } from '../utils';
+import React from "react";
+import PropTypes from "prop-types";
+import { View, Text } from "react-native";
+import styles from "./Times.styles";
+import { getTimeLabelHeight } from "../utils";
 
 const Times = ({ times, hoursInDisplay, timeStep, textStyle, width }) => {
   const height = getTimeLabelHeight(hoursInDisplay, timeStep);

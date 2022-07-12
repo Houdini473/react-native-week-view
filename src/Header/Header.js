@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Text, View, TouchableOpacity } from 'react-native';
-import moment from 'moment';
+import React from "react";
+import PropTypes from "prop-types";
+import { Text, View, TouchableOpacity } from "react-native";
+import moment from "moment";
 
 import {
   getFormattedDate,
   calculateDaysArray,
   availableNumberOfDays,
-} from '../utils';
-import styles from './Header.styles';
+} from "../utils";
+import styles from "./Header.styles";
 
 const getDayTextStyles = (numberOfDays) => {
   const fontSize = numberOfDays === 7 ? 12 : 14;
@@ -33,7 +33,7 @@ const Column = ({
   width,
 }) => {
   const formattedDate = getFormattedDate(column, format);
-  const isToday = moment().isSame(column, 'days');
+  const isToday = moment().isSame(column, "days");
   const fullTextStyle = [getDayTextStyles(numberOfDays), textStyle];
 
   const ComponentChosen =
@@ -103,7 +103,7 @@ WeekViewHeader.propTypes = {
 };
 
 WeekViewHeader.defaultProps = {
-  formatDate: 'MMM D',
+  formatDate: "MMM D",
 };
 
 export default React.memo(WeekViewHeader);

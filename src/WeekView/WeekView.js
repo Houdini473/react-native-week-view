@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
   View,
   ScrollView,
@@ -9,17 +9,17 @@ import {
   ActivityIndicator,
   Platform,
   Dimensions,
-} from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import moment from 'moment';
-import memoizeOne from 'memoize-one';
+} from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import moment from "moment";
+import memoizeOne from "memoize-one";
 
-import Event from '../Event/Event';
-import Events from '../Events/Events';
-import Header from '../Header/Header';
-import Title from '../Title/Title';
-import Times from '../Times/Times';
-import styles from './WeekView.styles';
+import Event from "../Event/Event";
+import Events from "../Events/Events";
+import Header from "../Header/Header";
+import Title from "../Title/Title";
+import Times from "../Times/Times";
+import styles from "./WeekView.styles";
 import {
   DATE_STR_FORMAT,
   availableNumberOfDays,
@@ -28,17 +28,17 @@ import {
   yToSeconds,
   computeWeekViewDimensions,
   CONTENT_OFFSET,
-} from '../utils';
+} from "../utils";
 
 const MINUTES_IN_DAY = 60 * 24;
 const calculateTimesArray = (
   minutesStep,
   formatTimeLabel,
   beginAt = 0,
-  endAt = MINUTES_IN_DAY,
+  endAt = MINUTES_IN_DAY
 ) => {
   const times = [];
-  const startOfDay = moment().startOf('day');
+  const startOfDay = moment().startOf("day");
   for (
     let timer = beginAt >= 0 && beginAt < MINUTES_IN_DAY ? beginAt : 0;
     timer < endAt && timer < MINUTES_IN_DAY;
@@ -66,13 +66,13 @@ export default class WeekView extends Component {
       props.numberOfDays,
       props.weekStartsOn,
       props.prependMostRecent,
-      props.fixedHorizontally,
+      props.fixedHorizontally
     );
     this.state = {
       // currentMoment should always be the first date of the current page
       currentMoment: moment(initialDates[this.currentPageIndex]).toDate(),
       initialDates,
-      windowWidth: Dimensions.get('window').width,
+      windowWidth: Dimensions.get("window").width,
     };
 
     setLocale(props.locale);
@@ -89,8 +89,8 @@ export default class WeekView extends Component {
       this.header.scrollToOffset({ offset: position.value, animated: false });
     });
 
-    this.windowListener = Dimensions.addEventListener('change', ({ window }) =>
-      this.setState({ windowWidth: window.width }),
+    this.windowListener = Dimensions.addEventListener("change", ({ window }) =>
+      this.setState({ windowWidth: window.width })
     );
   }
 
@@ -110,7 +110,7 @@ export default class WeekView extends Component {
         this.state.currentMoment,
         this.props.numberOfDays,
         this.props.prependMostRecent,
-        this.props.fixedHorizontally,
+        this.props.fixedHorizontally
       );
 
       this.currentPageIndex = this.pageOffset;
@@ -125,7 +125,7 @@ export default class WeekView extends Component {
             index: this.pageOffset,
             animated: false,
           });
-        },
+        }
       );
     }
     if (this.state.windowWidth !== prevState.windowWidth) {
@@ -188,11 +188,11 @@ export default class WeekView extends Component {
     const seconds = yToSeconds(
       position - CONTENT_OFFSET,
       hoursInDisplay,
-      beginAgendaAt,
+      beginAgendaAt
     );
 
     const date = moment(this.state.currentMoment)
-      .startOf('day')
+      .startOf("day")
       .seconds(seconds)
       .toDate();
 
@@ -214,7 +214,7 @@ export default class WeekView extends Component {
     const daySignToThePast = daySignToTheFuture * -1;
     const addDays = numberOfDays * daySignToThePast;
     for (let i = 1; i <= nPages; i += 1) {
-      const initialDate = moment(first).add(addDays * i, 'd');
+      const initialDate = moment(first).add(addDays * i, "d");
       initialDates.unshift(initialDate.format(DATE_STR_FORMAT));
     }
   };
@@ -226,7 +226,7 @@ export default class WeekView extends Component {
     const latest = initialDates[initialDates.length - 1];
     const addDays = numberOfDays * daySignToTheFuture;
     for (let i = 1; i <= nPages; i += 1) {
-      const initialDate = moment(latest).add(addDays * i, 'd');
+      const initialDate = moment(latest).add(addDays * i, "d");
       initialDates.push(initialDate.format(DATE_STR_FORMAT));
     }
   };
@@ -236,9 +236,9 @@ export default class WeekView extends Component {
     const { numberOfDays } = this.props;
 
     const currentDate = moment(initialDates[this.currentPageIndex]).startOf(
-      'day',
+      "day"
     );
-    const deltaDay = moment(targetDate).startOf('day').diff(currentDate, 'day');
+    const deltaDay = moment(targetDate).startOf("day").diff(currentDate, "day");
     const deltaIndex = Math.floor(deltaDay / numberOfDays);
     const signToTheFuture = this.getSignToTheFuture();
     const targetIndex = this.currentPageIndex + deltaIndex * signToTheFuture;
@@ -382,7 +382,7 @@ export default class WeekView extends Component {
     numberOfDays,
     weekStartsOn,
     prependMostRecent,
-    fixedHorizontally,
+    fixedHorizontally
   ) => {
     const initialDates = [];
     const centralDate = moment(currentMoment);
@@ -390,11 +390,11 @@ export default class WeekView extends Component {
       centralDate.subtract(
         // Ensure centralDate is before currentMoment
         (centralDate.day() + 7 - weekStartsOn) % 7,
-        'days',
+        "days"
       );
     }
     for (let i = -this.pageOffset; i <= this.pageOffset; i += 1) {
-      const initialDate = moment(centralDate).add(numberOfDays * i, 'd');
+      const initialDate = moment(centralDate).add(numberOfDays * i, "d");
       initialDates.push(initialDate.format(DATE_STR_FORMAT));
     }
     return prependMostRecent ? initialDates.reverse() : initialDates;
@@ -411,12 +411,12 @@ export default class WeekView extends Component {
 
       for (
         let date = moment(startDate);
-        date.isSameOrBefore(endDate, 'days');
-        date.add(1, 'days')
+        date.isSameOrBefore(endDate, "days");
+        date.add(1, "days")
       ) {
         // Calculate actual start and end dates
-        const startOfDay = moment(date).startOf('day');
-        const endOfDay = moment(date).endOf('day');
+        const startOfDay = moment(date).startOf("day");
+        const endOfDay = moment(date).endOf("day");
 
         // The event box is limited to the start and end of the day
         const boxStartDate = moment.max(startDate, startOfDay).toDate();
@@ -439,7 +439,7 @@ export default class WeekView extends Component {
     // For each day, sort the events by the minute (in-place)
     Object.keys(sortedEvents).forEach((date) => {
       sortedEvents[date].sort((a, b) => {
-        return moment(a.box.startDate).diff(b.box.startDate, 'minutes');
+        return moment(a.box.startDate).diff(b.box.startDate, "minutes");
       });
     });
     return sortedEvents;
@@ -496,7 +496,7 @@ export default class WeekView extends Component {
       timeStep,
       formatTimeLabel,
       beginAgendaAt,
-      endAgendaAt,
+      endAgendaAt
     );
     const eventsByDate = this.sortEventsByDate(events);
     const horizontalInverted =
@@ -563,7 +563,7 @@ export default class WeekView extends Component {
           onStartShouldSetResponderCapture={() => false}
           onMoveShouldSetResponderCapture={() => false}
           onResponderTerminationRequest={() => false}
-          contentContainerStyle={Platform.OS === 'web' && styles.webScrollView}
+          contentContainerStyle={Platform.OS === "web" && styles.webScrollView}
           onMomentumScrollBegin={this.verticalScrollBegun}
           onMomentumScrollEnd={this.verticalScrollEnded}
           ref={this.verticalAgendaRef}
@@ -630,7 +630,7 @@ export default class WeekView extends Component {
                     },
                   },
                 ],
-                { useNativeDriver: false },
+                { useNativeDriver: false }
               )}
               ref={this.eventsGridRef}
               windowSize={this.windowSize}
@@ -691,13 +691,13 @@ WeekView.propTypes = {
 
 WeekView.defaultProps = {
   events: [],
-  locale: 'en',
+  locale: "en",
   hoursInDisplay: 6,
   weekStartsOn: 1,
   timeStep: 60,
   beginAgendaAt: 0,
   endAgendaAt: MINUTES_IN_DAY,
-  formatTimeLabel: 'H:mm',
+  formatTimeLabel: "H:mm",
   startHour: 8,
   showTitle: true,
   rightToLeft: false,

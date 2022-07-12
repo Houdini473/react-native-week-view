@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
-import { Text } from 'react-native';
-import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+import React, { useCallback } from "react";
+import PropTypes from "prop-types";
+import { Text } from "react-native";
+import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import Animated, {
   useAnimatedStyle,
   useAnimatedReaction,
@@ -10,10 +10,10 @@ import Animated, {
   withSpring,
   runOnJS,
   useDerivedValue,
-} from 'react-native-reanimated';
-import styles from './Event.styles';
+} from "react-native-reanimated";
+import styles from "./Event.styles";
 
-const DEFAULT_COLOR = 'red';
+const DEFAULT_COLOR = "red";
 const UPDATE_EVENT_ANIMATION_DURATION = 150;
 
 const Event = ({
@@ -35,7 +35,7 @@ const Event = ({
   ]);
   const onLongPressWrapper = useCallback(
     () => onLongPress && onLongPress(event),
-    [event, onLongPress],
+    [event, onLongPress]
   );
 
   const onDragRelease = useCallback(
@@ -48,7 +48,7 @@ const Event = ({
       const newY = position.top + dy;
       onDrag(event, newX, newY);
     },
-    [event, position, onDrag],
+    [event, position, onDrag]
   );
 
   const translatedByDrag = useSharedValue({ x: 0, y: 0 });
@@ -105,7 +105,7 @@ const Event = ({
           duration: UPDATE_EVENT_ANIMATION_DURATION,
         });
       }
-    },
+    }
   );
 
   const dragGesture = Gesture.Pan()
@@ -170,7 +170,7 @@ const Event = ({
   const composedGesture = Gesture.Race(
     dragGesture,
     longPressGesture,
-    pressGesture,
+    pressGesture
   );
 
   return (

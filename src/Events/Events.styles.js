@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
-import { CONTENT_OFFSET } from '../utils';
+import { StyleSheet } from "react-native";
+import { CONTENT_OFFSET } from "../utils";
 
-const GREY_COLOR = '#E9EDF0';
+const GREY_COLOR = "#E9EDF0";
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   timeRow: {
     borderTopWidth: 1,
     borderColor: GREY_COLOR,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   },
   eventsColumn: {
     flex: 1,
@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
   },
   eventsContainer: {
-    position: 'absolute',
-    flexDirection: 'row',
+    position: "absolute",
+    flexDirection: "row",
     left: 0,
     right: 0,
     bottom: 0,
     top: 0,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   },
 });
 

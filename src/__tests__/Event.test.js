@@ -1,13 +1,13 @@
-import 'react-native';
-import React from 'react';
+import "react-native";
+import React from "react";
 import {
   fireGestureHandler,
   getByGestureTestId,
-} from 'react-native-gesture-handler/jest-utils';
-import { render } from '@testing-library/react-native';
-import Event from '../Event/Event';
+} from "react-native-gesture-handler/jest-utils";
+import { render } from "@testing-library/react-native";
+import Event from "../Event/Event";
 
-describe('onDrag handler', () => {
+describe("onDrag handler", () => {
   // Any values as constants:
   const INITIAL_TOP = 10;
   const INITIAL_LEFT = 0;
@@ -25,12 +25,12 @@ describe('onDrag handler', () => {
     // {}, // implicit END state
   ];
 
-  it('Calls onDrag with new position', () => {
+  it("Calls onDrag with new position", () => {
     const targetId = 1;
     const mockEvent = {
       id: targetId,
-      description: 'some description',
-      color: 'red',
+      description: "some description",
+      color: "red",
       startDate: new Date(2021, 1, 3, 12, 0),
       endDate: new Date(2021, 1, 3, 12, 2),
     };
@@ -45,14 +45,14 @@ describe('onDrag handler', () => {
     render(<Event event={mockEvent} onDrag={onDragMock} position={position} />);
     fireGestureHandler(
       getByGestureTestId(`dragGesture-${targetId}`),
-      buildDragGesture(),
+      buildDragGesture()
     );
 
     expect(onDragMock).toHaveBeenCalledTimes(1);
     expect(onDragMock).toHaveBeenCalledWith(
       mockEvent,
       INITIAL_LEFT + TRANSLATION_X + EVT_MIDDLE_ANCHOR, // final_left grab the evt by the anchor
-      INITIAL_TOP + TRANSLATION_Y,
+      INITIAL_TOP + TRANSLATION_Y
     );
   });
 });

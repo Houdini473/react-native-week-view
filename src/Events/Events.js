@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { View } from 'react-native';
-import moment from 'moment';
-import memoizeOne from 'memoize-one';
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import { View } from "react-native";
+import moment from "moment";
+import memoizeOne from "memoize-one";
 
-import NowLine from '../NowLine/NowLine';
-import Event, { eventPropType } from '../Event/Event';
+import NowLine from "../NowLine/NowLine";
+import Event, { eventPropType } from "../Event/Event";
 import {
   calculateDaysArray,
   DATE_STR_FORMAT,
@@ -14,10 +14,10 @@ import {
   getTimeLabelHeight,
   yToSeconds,
   minutesToY,
-} from '../utils';
-import { ViewWithTouchable } from '../utils-gestures';
+} from "../utils";
+import { ViewWithTouchable } from "../utils-gestures";
 
-import styles from './Events.styles';
+import styles from "./Events.styles";
 
 const MINUTES_IN_HOUR = 60;
 const EVENT_HORIZONTAL_PADDING = 8; // percentage
@@ -31,7 +31,7 @@ const padItemWidth = (width, paddingPercentage = EVENT_HORIZONTAL_PADDING) =>
 
 const areEventsOverlapped = (event1EndDate, event2StartDate) => {
   const endDate = moment(event1EndDate);
-  endDate.subtract(ALLOW_OVERLAP_SECONDS, 'seconds');
+  endDate.subtract(ALLOW_OVERLAP_SECONDS, "seconds");
   return endDate.isSameOrAfter(event2StartDate);
 };
 
@@ -39,13 +39,13 @@ const getStyleForEvent = (
   event,
   regularItemWidth,
   hoursInDisplay,
-  beginAgendaAt,
+  beginAgendaAt
 ) => {
   const startDate = moment(event.startDate);
   const minutes = startDate.hours() * MINUTES_IN_HOUR + startDate.minutes();
   const top = minutesToY(minutes, hoursInDisplay, beginAgendaAt);
 
-  const deltaMinutes = moment(event.endDate).diff(event.startDate, 'minutes');
+  const deltaMinutes = moment(event.endDate).diff(event.startDate, "minutes");
   const height = minutesToY(deltaMinutes, hoursInDisplay);
 
   return {
@@ -104,7 +104,7 @@ const addOverlappedToArray = (baseArr, overlappedArr, itemWidth) => {
   const dividedWidth = itemWidth / nLanes;
   const width = Math.max(
     padItemWidth(dividedWidth, EVENT_HORIZONTAL_PADDING / nLanes),
-    MIN_ITEM_WIDTH,
+    MIN_ITEM_WIDTH
   );
 
   overlappedArr.forEach((eventWithStyle, index) => {
@@ -125,7 +125,7 @@ const getEventsWithPosition = (
   totalEvents,
   dayWidth,
   hoursInDisplay,
-  beginAgendaAt,
+  beginAgendaAt
 ) => {
   const paddedDayWidth = padItemWidth(dayWidth);
   return totalEvents.map((events) => {
@@ -136,7 +136,7 @@ const getEventsWithPosition = (
         box,
         paddedDayWidth,
         hoursInDisplay,
-        beginAgendaAt,
+        beginAgendaAt
       );
       const eventWithStyle = {
         ref,
@@ -167,7 +167,7 @@ const processEvents = (
   dayWidth,
   hoursInDisplay,
   rightToLeft,
-  beginAgendaAt,
+  beginAgendaAt
 ) => {
   // totalEvents stores events in each day of numberOfDays
   // example: [[event1, event2], [event3, event4], [event5]], each child array
@@ -182,7 +182,7 @@ const processEvents = (
     totalEvents,
     dayWidth,
     hoursInDisplay,
-    beginAgendaAt,
+    beginAgendaAt
   );
   return totalEventsWithPosition;
 };
@@ -200,12 +200,12 @@ class Events extends PureComponent {
     const seconds = yToSeconds(
       pressEvt.y - CONTENT_OFFSET,
       hoursInDisplay,
-      beginAgendaAt,
+      beginAgendaAt
     );
 
     const dateWithTime = moment(initialDate)
-      .add(dayIndex, 'day')
-      .startOf('day')
+      .add(dayIndex, "day")
+      .startOf("day")
       .seconds(seconds)
       .toDate();
 
@@ -233,12 +233,12 @@ class Events extends PureComponent {
     const seconds = yToSeconds(
       newY - CONTENT_OFFSET,
       hoursInDisplay,
-      beginAgendaAt,
+      beginAgendaAt
     );
 
     const newStartDate = moment(event.startDate)
-      .add(movedDays, 'days')
-      .startOf('day')
+      .add(movedDays, "days")
+      .startOf("day")
       .seconds(seconds)
       .toDate();
 
@@ -251,7 +251,7 @@ class Events extends PureComponent {
   isToday = (dayIndex) => {
     const { initialDate } = this.props;
     const today = moment();
-    return moment(initialDate).add(dayIndex, 'days').isSame(today, 'day');
+    return moment(initialDate).add(dayIndex, "days").isSame(today, "day");
   };
 
   render() {
@@ -285,7 +285,7 @@ class Events extends PureComponent {
       dayWidth,
       hoursInDisplay,
       rightToLeft,
-      beginAgendaAt,
+      beginAgendaAt
     );
     const timeSlotHeight = getTimeLabelHeight(hoursInDisplay, timeStep);
 
@@ -355,8 +355,8 @@ Events.propTypes = {
           startDate: PropTypes.instanceOf(Date).isRequired,
           endDate: PropTypes.instanceOf(Date).isRequired,
         }),
-      }),
-    ),
+      })
+    )
   ).isRequired,
   initialDate: PropTypes.string.isRequired,
   hoursInDisplay: PropTypes.number.isRequired,
