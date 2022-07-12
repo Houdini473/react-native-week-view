@@ -306,10 +306,8 @@ export default class WeekView extends Component {
   };
 
   scrollEnded = (event) => {
-    if (!this.isScrollingHorizontal) {
-      // Ensure the callback is called only once
-      return;
-    }
+    // Ensure the callback is called only once
+    if (!this.isScrollingHorizontal) return;
     this.isScrollingHorizontal = false;
 
     const {
@@ -324,9 +322,7 @@ export default class WeekView extends Component {
     const movedPages = newPage - this.currentPageIndex;
     this.currentPageIndex = newPage;
 
-    if (movedPages === 0) {
-      return;
-    }
+    if (movedPages === 0) return;
 
     InteractionManager.runAfterInteractions(() => {
       const newMoment = moment(initialDates[this.currentPageIndex]).toDate();
@@ -447,7 +443,7 @@ export default class WeekView extends Component {
 
   updateDimensions = memoizeOne(computeWeekViewDimensions);
 
-  getListItemLayout = (item, index) => {
+  getListItemLayout = (_, index) => {
     const pageWidth = this.dimensions.pageWidth || 0;
     return {
       length: pageWidth,
