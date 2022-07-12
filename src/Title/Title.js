@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import { getCurrentMonth, availableNumberOfDays } from "../utils";
 import styles from "./Title.styles";
+import moment from "moment";
 
 const getFontSizeHeader = (numberOfDays) => {
   if (numberOfDays > 1) {
@@ -40,7 +41,18 @@ const Title = ({
           textStyle,
         ]}
       >
-        {formattedMonth}
+        {moment(selectedDate).format("MMM")}
+      </Text>
+      <Text
+        style={[
+          {
+            fontSize: getFontSizeHeader(numberOfDays),
+            textAlign: "center",
+          },
+          textStyle,
+        ]}
+      >
+        {moment(selectedDate).format("YY")}
       </Text>
     </TouchableOpacity>
   );

@@ -90,7 +90,7 @@ export const addLocale = (locale, obj) => {
 };
 
 export const getCurrentMonth = (date) => {
-  return moment(date).format("MMM Y");
+  return moment(date).format("MMM YY");
 };
 
 export const calculateDaysArray = (date, numberOfDays, rightToLeft) => {
