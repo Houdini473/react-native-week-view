@@ -1,7 +1,6 @@
-
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb", "airbnb/hooks", "plugin:prettier/recommended"],
+  "extends": [],
   "env": {
     "browser": true,
     "node": true,
@@ -21,11 +20,7 @@
     "react/forbid-prop-types": 0,
     "react/no-array-index-key": 0,
     "react/destructuring-assignment": 0,
-    "react/sort-comp": 0,
-    "react-hooks/exhaustive-deps": "warn"
+    "react/sort-comp": 0
   },
-  "plugins": [
-    "react",
-    "jest"
-  ]
+  "plugins": ["react", "jest"]
 }
