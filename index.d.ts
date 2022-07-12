@@ -4,7 +4,12 @@ declare module "react-native-week-view" {
   import type { Ref } from "react";
   import type { LessonHistory } from "./User";
   import type { Recurrence } from "./Calendar";
-  import type { NativeTouchEvent, ViewStyle } from "react-native";
+  import type {
+    NativeTouchEvent,
+    ViewStyle,
+    StyleProp,
+    TextStyle,
+  } from "react-native";
   import type { ComponentType } from "react";
 
   declare function WeekView(props: WeekViewProps): JSX.Element;
@@ -93,11 +98,11 @@ declare module "react-native-week-view" {
     RefreshComponent?: ComponentType<any>;
     locale?: string;
     rightToLeft?: boolean;
-    headerStyle?: CSSStyleSheet;
-    headerTextStyle?: CSSStyleSheet;
-    eventContainerStyle?: ViewStyle;
-    gridRowStyle?: CSSStyleSheet;
-    gridColumnStyle?: CSSStyleSheet;
+    headerStyle?: StyleProp<ViewStyle>;
+    headerTextStyle?: StyleProp<TextStyle>;
+    eventContainerStyle?: StyleProp<ViewStyle>;
+    gridRowStyle?: StyleProp<ViewStyle>;
+    gridColumnStyle?: StyleProp<ViewStyle>;
     prependMostRecent?: boolean;
     ref?: Ref<WeekViewMethods>;
   }
