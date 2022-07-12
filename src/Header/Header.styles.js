@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderTopWidth: 1,
     borderLeftWidth: 1,
+    borderColor: '#ddd'
   },
 });
 
