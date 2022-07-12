@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderTopWidth: 1,
-    borderColor: 'ddd',
+    borderColor: '#ddd',
   },
 });
 
