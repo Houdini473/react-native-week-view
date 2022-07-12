@@ -41,7 +41,7 @@ const Title = ({
           textStyle,
         ]}
       >
-        {moment(selectedDate).format("MMM")}
+        {moment(selectedDate).format("MMM")}.
       </Text>
       <Text
         style={[
@@ -52,7 +52,7 @@ const Title = ({
           textStyle,
         ]}
       >
-        {moment(selectedDate).format("YY")}
+        {moment(selectedDate).format("Y")}
       </Text>
     </TouchableOpacity>
   );
